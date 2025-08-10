@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Sistem Informasi Wisata Desa Soko Kecamatan Temayang Kabupaten Bojonegoro
+    </title>
+
+    <!-- Bootstrap CSS -->
+    <link href="bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="bootstrap-icons.css" />
+
+    <style>
+      :root {
+        --primary-green: #059669;
+        --secondary-green: #10b981;
+        --light-green: #d1fae5;
+        --dark-green: #047857;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+      }
+
+      .navbar-brand {
+        font-weight: bold;
+        font-size: 1.4rem;
+      }
+
+      .hero-section {
+        background: linear-gradient(
+          135deg,
+          var(--primary-green),
+          var(--secondary-green)
+        );
+        color: white;
+        padding: 4rem 0;
+      }
+
+      .sejarah-section {
+        padding: 4rem 0;
+        background-color: #f8f9fa;
+      }
+
+      .wisata-section {
+        padding: 4rem 0;
+      }
+
+      .card-wisata {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-wisata:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+
+      .img-zoomable {
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+
+      .img-zoomable:hover {
+        transform: scale(1.05);
+        filter: brightness(1.1);
+      }
+
+      .btn-primary {
+        background-color: var(--primary-green);
+        border-color: var(--primary-green);
+      }
+
+      .btn-primary:hover {
+        background-color: var(--dark-green);
+        border-color: var(--dark-green);
+      }
+
+      .footer {
+        background-color: var(--dark-green);
+        color: white;
+        padding: 3rem 0 1rem 0;
+      }
+
+      .carousel-item img {
+        height: 400px;
+        object-fit: cover;
+      }
+
+      .sejarah-img {
+        border-radius: 15px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .section-title {
+        color: var(--primary-green);
+        font-weight: bold;
+        margin-bottom: 2rem;
+        position: relative;
+        padding-bottom: 1rem;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 60px;
+        height: 3px;
+        background-color: var(--secondary-green);
+      }
+
+      .wisata-description {
+        background-color: var(--light-green);
+        padding: 2rem;
+        border-radius: 10px;
+        margin-bottom: 3rem;
+      }
+
+      /* Mini carousel styling */
+      .card .carousel {
+        border-top-left-radius: 0.375rem;
+        border-top-right-radius: 0.375rem;
+        overflow: hidden;
+      }
+
+      .card .carousel-control-prev,
+      .card .carousel-control-next {
+        width: 15%;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .card:hover .carousel-control-prev,
+      .card:hover .carousel-control-next {
+        opacity: 0.8;
+      }
+
+      .card .carousel-control-prev:hover,
+      .card .carousel-control-next:hover {
+        opacity: 1;
+      }
+
+      .card .carousel-control-prev-icon,
+      .card .carousel-control-next-icon {
+        width: 20px;
+        height: 20px;
+        background-size: 100%, 100%;
+      }
+
+      /* Sejarah carousel styling */
+      #sejarahCarousel .carousel-control-prev,
+      #sejarahCarousel .carousel-control-next {
+        width: 10%;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+      }
+
+      #sejarahCarousel:hover .carousel-control-prev,
+      #sejarahCarousel:hover .carousel-control-next {
+        opacity: 1;
+      }
+
+      #sejarahCarousel .carousel-indicators {
+        bottom: 10px;
+      }
+
+      #sejarahCarousel .carousel-indicators button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        margin: 0 3px;
+      }
+
+      @media (max-width: 768px) {
+        .hero-section {
+          padding: 2rem 0;
+        }
+
+        .navbar-brand {
+          font-size: 1.1rem;
+        }
+
+        .carousel-item img {
+          height: 250px;
+        }
+
+        .card .carousel-control-prev,
+        .card .carousel-control-next {
+          opacity: 0.5;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav
+      class="navbar navbar-expand-lg navbar-dark"
+      style="background-color: var(--primary-green)"
+    >
+      <div class="container">
+        <a class="navbar-brand" href="#">
+          <i class="bi bi-geo-alt-fill me-2"></i>
+          Sistem Informasi Wisata Desa Soko
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#sejarah">Sejarah</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#wisata">Wisata</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#kontak">Kontak</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-12 text-center">
+            <h1 class="display-4 fw-bold mb-4">
+              Sistem Informasi Wisata Desa Soko<br />
+              Kecamatan Temayang Kabupaten Bojonegoro
+            </h1>
+            <p class="lead mb-4">
+              Jelajahi keindahan alam, sejarah, dan budaya Desa Soko yang
+              tersembunyi di pegunungan Kendeng
+            </p>
+            <a href="#sejarah" class="btn btn-light btn-lg px-4">
+              <i class="bi bi-arrow-down-circle me-2"></i>Mulai Jelajah
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sejarah Section -->
+    <section id="sejarah" class="sejarah-section">
+      <div class="container">
+        <h2 class="text-center section-title">Sejarah Desa Soko Temayang</h2>
+
+        <div class="row align-items-center">
+          <div class="col-lg-6 mb-4">
+            <!-- Carousel Sejarah Desa -->
+            <div id="sejarahCarousel" class="carousel slide">
+              <div class="carousel-indicators">
+                <button
+                  type="button"
+                  data-bs-target="#sejarahCarousel"
+                  data-bs-slide-to="0"
+                  class="active"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#sejarahCarousel"
+                  data-bs-slide-to="1"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#sejarahCarousel"
+                  data-bs-slide-to="2"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#sejarahCarousel"
+                  data-bs-slide-to="3"
+                ></button>
+                <button
+                  type="button"
+                  data-bs-target="#sejarahCarousel"
+                  data-bs-slide-to="4"
+                ></button>
+              </div>
+              <div class="carousel-inner rounded">
+                <div class="carousel-item active">
+                  <img
+                    src="gambar/kades1.jpg"
+                    class="d-block w-100 img-zoomable sejarah-img"
+                    alt="Kepala Desa Soko"
+                    style="height: 350px; object-fit: cover; cursor: pointer"
+                    onclick="openImageModal('gambar/kades1.jpg', 'Kepala Desa Soko')"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="gambar/kades2.jpg"
+                    class="d-block w-100 img-zoomable sejarah-img"
+                    alt="Kegiatan Desa"
+                    style="height: 350px; object-fit: cover; cursor: pointer"
+                    onclick="openImageModal('gambar/kades2.jpg', 'Kegiatan Desa')"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="gambar/kades3.jpg"
+                    class="d-block w-100 img-zoomable sejarah-img"
+                    alt="Rapat Desa"
+                    style="height: 350px; object-fit: cover; cursor: pointer"
+                    onclick="openImageModal('gambar/kades3.jpg', 'Rapat Desa')"
+                  />
+                </div>
+                <div class="carousel-item">
+                  <img
+                    src="gambar/kades4.jpg"
+                    class="d-block w-100 img-zoomable sejarah-img"
+                    alt="Aktivitas Masyarakat"
+                    style="height: 350px; object-fit: cover; cursor: pointer"
+                    onclick="openImageModal('gambar/kades4.jpg', 'Aktivitas Masyarakat')"
+                  />
+                </div>
+              </div>
+              <button
+                class="carousel-control-prev"
+                type="button"
+                data-bs-target="#sejarahCarousel"
+                data-bs-slide="prev"
+              >
+                <span
+                  class="carousel-control-prev-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button
+                class="carousel-control-next"
+                type="button"
+                data-bs-target="#sejarahCarousel"
+                data-bs-slide="next"
+              >
+                <span
+                  class="carousel-control-next-icon"
+                  aria-hidden="true"
+                ></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="ps-lg-4">
+              <h3 class="h4 mb-3" style="color: var(--primary-green)">
+                Warisan Sejarah yang Kaya
+              </h3>
+              <p class="text-muted mb-3">
+                Desa Soko yang terletak di Kecamatan Temayang memiliki latar
+                sejarah dan kebudayaan yang menarik. Secara geologis, wilayah
+                ini dulunya merupakan bagian dari lautan purba jutaan tahun
+                silam. Hal ini dibuktikan dari banyaknya temuan fosil laut
+                seperti moluska, karang, dan bahkan bebatuan menyerupai lumpang
+                yang digunakan warga sebagai hiasan atau penanda batas tanah.
+                Temuan-temuan ini mengindikasikan bahwa daerah Soko telah dihuni
+                sejak masa kuno, bahkan mungkin sejak zaman Kerajaan Majapahit.
+              </p>
+              <p class="text-muted mb-3">
+                Selain itu, di kawasan hutan pegunungan Kendeng yang
+                mengelilingi desa, terdapat bekas bangunan tua peninggalan masa
+                kolonial Belanda. Keberadaan bangunan ini menjadi saksi bisu
+                bahwa Desa Soko pernah menjadi bagian dari wilayah strategis
+                pada masa lampau. Di dekat balai desa juga terdapat makam yang
+                diyakini sebagai makam Dampo Awang, seorang tokoh legendaris
+                yang dikaitkan dengan Laksamana Cheng Ho dari Tiongkok. Makam
+                ini menambah kekayaan nilai historis dan spiritual desa.
+              </p>
+              <p class="text-muted mb-3">
+                Secara geografis, Desa Soko berada di kawasan perbukitan
+                pegunungan Kendeng dan berbatasan langsung dengan Kabupaten
+                Nganjuk. Akses menuju desa ini cukup sulit karena berada di
+                tengah hutan dengan jalan berbatu dan medan curam. Desa ini
+                terdiri dari enam dusun, yaitu Dusun Soko, Guyangan, Sumberpoh,
+                Sekonang, Glingsem, dan Sekidang. Infrastruktur yang terbatas
+                dan kondisi medan yang menantang menyebabkan rendahnya akses
+                pendidikan dan fasilitas umum. Sebagian besar penduduk hanya
+                mengenyam pendidikan hingga jenjang SD atau SMP.
+              </p>
+              <p class="text-muted mb-4">
+                Dengan kekayaan sejarah, budaya, dan perhatian pembangunan yang
+                terus berkembang, Desa Soko menjadi contoh desa pedalaman yang
+                tetap mempertahankan identitas tradisionalnya sambil perlahan
+                bergerak menuju kemajuan
+              </p>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-calendar3 text-success me-2"></i>
+                    <small class="text-muted"
+                      >Berdiri sejak era Majapahit</small
+                    >
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-people text-success me-2"></i>
+                    <small class="text-muted">6 Dusun Bersejarah</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Wisata Section -->
+    <section id="wisata" class="wisata-section">
+      <div class="container">
+        <h2 class="text-center section-title">Destinasi Wisata Unggulan</h2>
+
+        <div class="wisata-description">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h4 style="color: var(--primary-green)">
+                Pesona Wisata Alam dan Budaya
+              </h4>
+              <p class="mb-0 text-muted">
+                Desa Soko Temayang menawarkan berbagai destinasi wisata yang
+                memukau, mulai dari keindahan alam pegunungan hingga kekayaan
+                budaya tradisional yang masih terjaga. Setiap lokasi memiliki
+                keunikan dan daya tarik tersendiri yang siap memanjakan mata dan
+                jiwa para pengunjung.
+              </p>
+            </div>
+            <div class="col-lg-4 text-center">
+              <i
+                class="bi bi-compass"
+                style="font-size: 4rem; color: var(--secondary-green)"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+        <!-- Gambar Wisata Utama -->
+        <div class="text-center mb-5">
+          <div class="position-relative d-inline-block">
+            <img
+              src="gambar/Peta.jpg"
+              class="img-fluid rounded img-zoomable"
+              alt="Goa Soko - Destinasi Wisata Utama"
+              style="
+                max-height: 600px;
+                width: 100%;
+                object-fit: cover;
+                cursor: pointer;
+              "
+              onclick="openImageModal('gambar/peta.jpg', 'Peta Desa Soko - Destinasi Wisata Utama Desa Soko')"
+            />
+          </div>
+        </div>
+
+        <!-- Destinasi Wisata Cards -->
+        <div class="row">
+          <div class="col-12 mb-5">
+            <div class="card card-wisata h-100">
+              <!-- Mini Carousel untuk Sumber Mata Air Ubalan -->
+              <div id="carouselUbalan" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      src="gambar/ubalan.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Ubalan 1"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/ubalan.jpg', 'Sumber Mata Air Ubalan 1')"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="gambar/ubalan2.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Ubalan 2"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/ubalan2.jpg', 'Sumber Mata Air Ubalan 2')"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="gambar/ubalan.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Area sekitar Ubalan"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/1.jpg', 'Area sekitar Ubalan')"
+                    />
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselUbalan"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselUbalan"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title" style="color: var(--primary-green)">
+                  Sumber Mata Air Ubalan
+                </h5>
+                <p class="card-text">
+                  Sumber Mata Air Ubalan adalah salah satu permata alam yang
+                  memadukan keindahan panorama, nilai sejarah, dan kekayaan
+                  budaya lokal. Terletak di Desa Soko, Kecamatan Temayang,
+                  Bojonegoro, sumber air ini tidak hanya menjadi penopang
+                  kehidupan warga, tetapi juga menjadi simbol hubungan harmonis
+                  antara manusia dan alam. Lingkungan di sekitarnya yang masih
+                  asri, udara segar, serta gemericik air yang mengalir jernih,
+                  menjadikan tempat ini cocok sebagai destinasi untuk melepas
+                  penat dari hiruk-pikuk kehidupan kota.
+                </p>
+
+                <p class="card-text">
+                  Kejernihan air Ubalan sudah dikenal sejak lama, bahkan pada
+                  masa kolonial Belanda, sumber ini menjadi andalan untuk
+                  memenuhi kebutuhan air masyarakat dan perkebunan di
+                  sekitarnya. Jejak sejarah itu masih hidup melalui cerita
+                  turun-temurun warga, yang menambah kesan magis dan nilai
+                  historis bagi para pengunjung. Dengan berjalan di sekitarnya,
+                  Anda dapat merasakan seolah sedang menapaki jejak masa lampau
+                  yang berpadu dengan kesejukan alam masa kini.
+                </p>
+
+                <p class="card-text">
+                  Bukan hanya sejarahnya yang memikat, Sumber Mata Air Ubalan
+                  juga lekat dengan tradisi budaya Jawa yang masih lestari.
+                  Setiap bulan Suro, masyarakat setempat menggelar upacara adat
+                  Suroan di sini, memanjatkan doa dan rasa syukur kepada Sang
+                  Pencipta. Tradisi ini menjadi daya tarik tersendiri bagi
+                  wisatawan yang ingin merasakan pengalaman wisata budaya yang
+                  autentik. Berbagai mitos lokal yang berkembang, seperti
+                  keyakinan bahwa airnya membawa ketenangan batin dan
+                  keberkahan, semakin memperkaya cerita yang melekat pada tempat
+                  ini.
+                </p>
+
+                <p class="card-text">
+                  Selain sebagai tempat ritual dan sumber kehidupan, kawasan
+                  Ubalan juga menawarkan pesona wisata alam yang memanjakan
+                  mata. Rindangnya pepohonan, suara kicau burung, dan hembusan
+                  angin yang menyejukkan menciptakan atmosfer damai yang sulit
+                  ditemukan di tempat lain. Tidak jarang, pengunjung datang
+                  untuk sekadar duduk di tepi sumber air, merendam kaki, atau
+                  mengabadikan momen di tengah pemandangan alami yang memesona.
+                </p>
+
+                <p class="card-text">
+                  Dengan pengembangan fasilitas yang tepat, Sumber Mata Air
+                  Ubalan memiliki potensi besar untuk menjadi ikon wisata alam
+                  dan budaya di Bojonegoro. Tempat ini bukan hanya menawarkan
+                  keindahan fisik, tetapi juga memberikan pengalaman mendalam
+                  tentang bagaimana alam, sejarah, dan budaya dapat berpadu
+                  menjadi satu kesatuan yang harmonis. Ubalan adalah destinasi
+                  yang tidak hanya memanjakan mata, tetapi juga menyentuh hati.
+                </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <button
+                    class="btn btn-primary btn-sm"
+                    onclick="showLocation('Sumber Mata Air Ubalan', '-7.423154324099234, 111.92802646897769')"
+                  >
+                    <i class="bi bi-geo-alt me-1"></i>Lihat Lokasi
+                  </button>
+                  <small class="text-muted">
+                    <i class="bi bi-clock me-1"></i>1 jam perjalanan dari kota Bojonegoro
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-5">
+            <div class="card card-wisata h-100">
+              <!-- Mini Carousel untuk Goa Gondel -->
+              <div id="carouselGoa" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      src="gambar/Goa Soko.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Goa Soko 1"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/Goa Soko.jpg', 'Goa Gondel 1')"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="gambar/Goa Soko2.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Goa Soko 2"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/Goa Soko2.jpg', 'Goa Gondel 2')"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="gambar/goa.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Interior Goa"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/goa.jpg', 'Interior Goa Gondel')"
+                    />
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselGoa"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselGoa"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title" style="color: var(--primary-green)">
+                  Goa Gondel
+                </h5>
+                <p class="card-text">
+                  Goa Gondel, yang tersembunyi di Desa Soko, Kecamatan Temayang,
+                  Kabupaten Bojonegoro, adalah permata alam yang memikat bagi
+                  para pencinta petualangan dan keindahan alam. Goa alami ini
+                  terjaga keasriannya, menyimpan pesona batu-batu stalaktit dan
+                  stalagmit yang terbentuk selama ribuan tahun. Memasuki mulut
+                  goa, pengunjung akan disambut dengan udara sejuk, aroma tanah
+                  yang khas, dan cahaya temaram yang memantul di dinding batu,
+                  menciptakan suasana misterius yang memikat.
+                </p>
+
+                <p class="card-text">
+                  Setiap langkah di dalam Goa Gondel seperti membawa Anda ke
+                  dunia lain — deretan formasi batu unik yang menggantung di
+                  langit-langit, tetesan air yang jatuh perlahan, dan suara gema
+                  yang mengiringi setiap gerakan membuat suasana semakin magis.
+                  Keindahan ini berpadu dengan nuansa alami yang begitu hening,
+                  menjadikannya tempat sempurna untuk merenung, meditasi, atau
+                  sekadar menikmati ketenangan jauh dari keramaian kota.
+                </p>
+
+                <p class="card-text">
+                  Bagi masyarakat setempat, Goa Gondel bukan sekadar keajaiban
+                  alam, tetapi juga tempat sakral yang menyimpan nilai
+                  spiritual. Konon, beberapa orang datang ke sini untuk mencari
+                  ketenangan batin atau berdoa, percaya bahwa energi positif
+                  yang mengalir dari goa dapat membawa keberkahan. Mitos dan
+                  cerita rakyat yang mengelilinginya semakin menambah daya tarik
+                  bagi para wisatawan yang menyukai wisata budaya dan spiritual.
+                </p>
+
+                <p class="card-text">
+                  Akses menuju Goa Gondel terbilang mudah. Perjalanan menuju
+                  lokasi akan disuguhi pemandangan perbukitan Kendeng yang
+                  memukau, hamparan persawahan hijau, dan udara segar pedesaan.
+                  Baik menggunakan kendaraan pribadi maupun transportasi lokal,
+                  perjalanan ke sini akan menjadi pengalaman yang menyenangkan
+                  bahkan sebelum sampai di tujuan.
+                </p>
+
+                <p class="card-text">
+                  Goa Gondel adalah surga tersembunyi yang layak masuk dalam
+                  daftar destinasi wajib di Bojonegoro. Pesona alam yang
+                  menakjubkan, atmosfer yang damai, serta sentuhan kisah mistis
+                  membuat setiap kunjungan meninggalkan kesan yang membekas.
+                  Bagi para penjelajah, fotografer alam, atau siapa pun yang
+                  mencari ketenangan, Goa Gondel siap menyambut dengan segala
+                  keindahannya. Datanglah, jelajahi, dan rasakan sendiri sensasi
+                  petualangan yang hanya bisa ditemukan di kedalaman Goa Gondel.
+                </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <button
+                    class="btn btn-primary btn-sm"
+                    onclick="showLocation('Goa Gondel', '-7.1245, 111.5689')"
+                  >
+                    <i class="bi bi-geo-alt me-1"></i>Lihat Lokasi
+                  </button>
+                  <small class="text-muted">
+                    <i class="bi bi-clock me-1"></i>1 jam 10 menit perjalanan dari kota Bojonegoro
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-12 mb-5">
+            <div class="card card-wisata h-100">
+              <!-- Mini Carousel untuk Mbah Sukijah -->
+              <div id="carouselMbah" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img
+                      src="gambar/mbahsukijah.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Mbah Sukijah"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/mbahsukijah.jpg', 'Mbah Sukijah')"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="gambar/mbahsukijah2.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Budaya Tradisional"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/mbahsukijah2.jpg', 'Budaya Tradisional')"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="gambar/mbahsukijah3.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Budaya Tradisional"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/mbahsukijah3.jpg', 'Budaya Tradisional')"
+                    />
+                  </div>
+                  <div class="carousel-item">
+                    <img
+                      src="gambar/mbahsukijah4.jpg"
+                      class="d-block w-100 img-zoomable"
+                      alt="Kegiatan Budaya"
+                      style="height: 400px; object-fit: cover; cursor: pointer"
+                      onclick="openImageModal('gambar/mbahsukijah4.jpg', 'Kegiatan Budaya')"
+                    />
+                  </div>
+                </div>
+                <button
+                  class="carousel-control-prev"
+                  type="button"
+                  data-bs-target="#carouselMbah"
+                  data-bs-slide="prev"
+                >
+                  <span
+                    class="carousel-control-prev-icon"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+                <button
+                  class="carousel-control-next"
+                  type="button"
+                  data-bs-target="#carouselMbah"
+                  data-bs-slide="next"
+                >
+                  <span
+                    class="carousel-control-next-icon"
+                    aria-hidden="true"
+                  ></span>
+                </button>
+              </div>
+              <div class="card-body">
+                <h5 class="card-title" style="color: var(--primary-green)">
+                  Mbah Sukijah
+                </h5>
+                <p class="card-text">
+                  Mbah Sukijah adalah sosok dalang perempuan yang melegenda di
+                  Desa Soko, Kecamatan Temayang, Kabupaten Bojonegoro, Jawa
+                  Timur. Di tengah dunia pedalangan yang umumnya didominasi
+                  laki-laki, beliau hadir dengan kharisma, kepiawaian, dan pesan
+                  moral yang begitu kuat dalam setiap pertunjukannya. Dengan
+                  suara lantang penuh wibawa, Mbah Sukijah membawakan kisah
+                  wayang kulit yang sarat dengan ajaran kehidupan, nilai
+                  spiritual, dan petuah bijak.
+                </p>
+
+                <p class="card-text">
+                  Keistimewaan Mbah Sukijah tak hanya terletak pada kemampuannya
+                  membawakan cerita, tetapi juga pada gaya pementasannya yang
+                  unik. Tidak seperti dalang pada umumnya, beliau tidak
+                  menggunakan iringan gamelan, melainkan mengandalkan suara,
+                  lantunan doa, dan kekuatan batin sebagai bagian dari
+                  tirakatnya. Suara beliau yang khas dan penuh penghayatan
+                  membuat setiap penonton merasa hanyut dalam alur cerita,
+                  seolah berada langsung di tengah dunia pewayangan yang penuh
+                  warna.
+                </p>
+
+                <p class="card-text">
+                  Pertunjukan Mbah Sukijah sering menjadi pusat perhatian di
+                  berbagai acara adat, seperti ruwatan, pernikahan, khitanan,
+                  dan peringatan tradisi desa. Bagi masyarakat, pementasan
+                  beliau bukan sekadar hiburan, tetapi sebuah nasihat kehidupan
+                  yang dibungkus dalam cerita Mahabharata atau Ramayana. Banyak
+                  orang mengaku pulang dari pertunjukan beliau dengan hati yang
+                  lebih tenang, pikiran yang tercerahkan, dan semangat baru
+                  untuk menjalani hidup.
+                </p>
+
+                <p class="card-text">
+                  Meski dikenal luas hingga ke luar daerah, Mbah Sukijah tetap
+                  memilih hidup sederhana di rumah kayu di pinggir desa,
+                  dikelilingi sawah dan kebun yang menyejukkan. Dari rumah
+                  itulah, beliau mengajar anak-anak desa yang ingin belajar seni
+                  wayang kulit, membagikan ilmunya tanpa pamrih. Bagi beliau,
+                  menjaga kelestarian budaya lebih penting daripada popularitas
+                  atau materi.
+                </p>
+
+                <p class="card-text">
+                  Kehadiran Mbah Sukijah di Desa Soko menjadi simbol keteguhan
+                  hati dalam mempertahankan budaya lokal. Beliau mengajarkan
+                  bahwa tradisi tidak boleh terkikis oleh zaman, melainkan harus
+                  terus diwariskan. Banyak generasi muda yang termotivasi oleh
+                  dedikasi beliau, belajar bahwa seni bukan hanya soal estetika,
+                  tetapi juga sebuah media untuk menyampaikan pesan moral dan
+                  mempererat hubungan antarwarga.
+                </p>
+
+                <p class="card-text">
+                  Dedikasi Mbah Sukijah dalam melestarikan seni wayang kulit
+                  membuat namanya dikenal sebagai salah satu ikon budaya di
+                  Bojonegoro. Dengan keahliannya, beliau membuktikan bahwa seni
+                  tradisional mampu bertahan dan relevan di era modern, bahkan
+                  menjadi daya tarik wisata budaya yang bernilai tinggi.
+                </p>
+
+                <p class="card-text">
+                  Mbah Sukijah bukan hanya dalang, melainkan guru, pembimbing,
+                  dan penjaga warisan leluhur. Melalui setiap pertunjukannya,
+                  beliau menghidupkan kembali nilai-nilai luhur bangsa, mengajak
+                  masyarakat untuk tidak melupakan akar budaya, dan memberikan
+                  teladan tentang baga imana seni dapat menjadi sarana untuk
+                  menyatukan hati dan pikiran. Dengan segala keunikan dan
+                  pesonanya, Mbah Sukijah akan selalu dikenang sebagai sosok
+                  yang menginspirasi banyak orang, baik di dalam maupun di luar
+                  Desa Soko.
+                </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <button
+                    class="btn btn-primary btn-sm"
+                    onclick="showLocation('Mbah Sukijah', '-7.421996623275885, 111.9298478820832')"
+                  >
+                    <i class="bi bi-geo-alt me-1"></i>Lihat Lokasi
+                  </button>
+                  <small class="text-muted">
+                    <i class="bi bi-clock me-1"></i>1 jam 5 menit perjalanan dari kota Bojonegoro
+                  </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="kontak" class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-4 mb-4">
+            <h5 class="mb-3">
+              <i class="bi bi-geo-alt-fill me-2"></i>
+              Sistem Informasi Wisata Desa Soko
+            </h5>
+            <p class="text-light">
+              Platform digital untuk mengenalkan potensi wisata dan sejarah Desa
+              Soko Temayang kepada masyarakat luas.
+            </p>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <h5 class="mb-3">Informasi Kontak</h5>
+            <div class="contact-info">
+              <p class="text-light mb-2">
+                <i class="bi bi-house-door me-2"></i>
+                Desa Soko, Jalan Indah No 55<br />
+                Kecamatan Temayang, Kabupaten Bojonegoro<br />
+                Provinsi Jawa Timur 62184
+              </p>
+              <p class="text-light mb-2">
+                <i class="bi bi-telephone me-2"></i>
+                081252415804
+              </p>
+              <p class="text-light mb-0">
+                <i class="bi bi-envelope me-2"></i>
+                desasoko40@gmail.com
+              </p>
+            </div>
+          </div>
+          <div class="col-lg-4 mb-4">
+            <h5 class="mb-3">Tautan Berguna</h5>
+            <ul class="list-unstyled">
+              <li>
+                <a href="#sejarah" class="text-light text-decoration-none"
+                  >Sejarah Desa</a
+                >
+              </li>
+              <li>
+                <a href="#wisata" class="text-light text-decoration-none"
+                  >Destinasi Wisata</a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://maps.app.goo.gl/5wAAwVFjXAZeumHR7"
+                  target="_blank"
+                  class="text-light text-decoration-none"
+                  >Lokasi di Google Maps</a
+                >
+              </li>
+              <li>
+                <a href="soko.html" class="text-light text-decoration-none"
+                  >Portal Resmi Desa</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+        <hr class="my-4" style="border-color: #6b7280" />
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <p class="text-light mb-0">
+              &copy; 2025 Sistem Informasi Wisata Desa Soko Temayang. Hak Cipta
+              Dilindungi.
+            </p>
+          </div>
+          <div class="col-md-6 text-md-end">
+            <div class="social-links">
+              <a href="#" class="text-light me-3"
+                ><i class="bi bi-facebook"></i
+              ></a>
+              <a href="#" class="text-light me-3"
+                ><i class="bi bi-instagram"></i
+              ></a>
+              <a href="#" class="text-light me-3"
+                ><i class="bi bi-youtube"></i
+              ></a>
+              <a href="#" class="text-light"><i class="bi bi-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Location Modal -->
+    <div
+      class="modal fade"
+      id="locationModal"
+      tabindex="-1"
+      aria-labelledby="locationModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="locationModalLabel">Lokasi Wisata</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div id="locationContent">
+              <!-- Content will be populated by JavaScript -->
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Tutup
+            </button>
+            <a
+              id="mapsLink"
+              href="${mapsUrl}"
+              target="_blank"
+              class="btn btn-primary"
+            >
+              <i class="bi bi-map me-1"></i>Buka di Google Maps
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Image Zoom Modal -->
+    <div
+      class="modal fade"
+      id="imageModal"
+      tabindex="-1"
+      aria-labelledby="imageModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark">
+          <div class="modal-header border-secondary">
+            <h5 class="modal-title text-white" id="imageModalLabel">Gambar</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center p-0">
+            <img id="modalImage" src="" alt="" class="img-fluid w-100" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="bootstrap.bundle.min.js"></script>
+
+    <script>
+      // Function to open image modal for zoom
+      function openImageModal(imageSrc, imageTitle) {
+        const modalImage = document.getElementById("modalImage");
+        const modalTitle = document.getElementById("imageModalLabel");
+
+        modalImage.src = imageSrc;
+        modalImage.alt = imageTitle;
+        modalTitle.textContent = imageTitle;
+
+        const modal = new bootstrap.Modal(
+          document.getElementById("imageModal")
+        );
+        modal.show();
+      }
+
+      // Function to show location
+      function showLocation(name, coordinates) {
+        document.getElementById("locationModalLabel").textContent =
+          "Lokasi " + name;
+
+        const [lat, lng] = coordinates.split(", ");
+        const mapsUrl = `https://www.google.com/maps?q=${lat},${lng}`;
+
+        // Tentukan gambar berdasarkan nama wisata
+        let imageSrc = "gambar/MapsSoko.jpg"; // default image
+        if (name.includes("Ubalan")) {
+          imageSrc = "gambar/mapsubalan.jpg";
+        } else if (name.includes("Goa")) {
+          imageSrc = "gambar/mapsgoagondel.jpg";
+        } else if (name.includes("Sukijah")) {
+          imageSrc = "gambar/mapssukijah.jpg";
+        }
+
+        document.getElementById("locationContent").innerHTML = `
+                <div class="text-center">
+                    <h5 class="mb-3">${name}</h5>
+                    <p class="text-muted mb-3">Koordinat: ${coordinates}</p>
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Klik tombol "Buka di Google Maps" untuk melihat lokasi dan mendapatkan petunjuk arah.
+                    </div>
+                    <div class="mt-3">
+                        <img src="${imageSrc}" alt="Peta ${name}" class="img-fluid rounded" style="max-height: 200px;">
+                    </div>
+                </div>
+            `;
+
+        document.getElementById("mapsLink").href = mapsUrl;
+
+        const modal = new bootstrap.Modal(
+          document.getElementById("locationModal")
+        );
+        modal.show();
+      }
+
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Auto-hide navbar on scroll (optional)
+      let lastScrollTop = 0;
+      const navbar = document.querySelector(".navbar");
+
+      window.addEventListener("scroll", function () {
+        let scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+          navbar.style.transform = "translateY(-100%)";
+        } else {
+          navbar.style.transform = "translateY(0)";
+        }
+
+        lastScrollTop = scrollTop;
+      });
+
+      // Add transition to navbar
+      navbar.style.transition = "transform 0.3s ease-in-out";
+
+      // Initialize carousels without auto-play (manual control only)
+      document.addEventListener("DOMContentLoaded", function () {
+        // Main hero carousel - manual only
+        const carousel = new bootstrap.Carousel(
+          document.getElementById("wisataCarousel"),
+          {
+            interval: false,
+            wrap: true,
+          }
+        );
+
+        // Sejarah carousel - manual only
+        const sejarahCarousel = new bootstrap.Carousel(
+          document.getElementById("sejarahCarousel"),
+          {
+            interval: false,
+            wrap: true,
+          }
+        );
+
+        // Initialize all mini carousels without auto-play
+        const miniCarousels = ["carouselUbalan", "carouselGoa", "carouselMbah"];
+        miniCarousels.forEach((carouselId) => {
+          const element = document.getElementById(carouselId);
+          if (element) {
+            new bootstrap.Carousel(element, {
+              interval: false,
+              wrap: true,
+            });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
